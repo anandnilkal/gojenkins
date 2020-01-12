@@ -382,9 +382,9 @@ func (j *Jenkins) GetAllJobNames() ([]InnerJob, error) {
 
 // Get All Possible Job Objects.
 // Each job will be queried.
-func (j *Jenkins) GetAllJobs() ([]*Job, error) {
+func (j *Jenkins) GetAllJobs(endpoint string) ([]*Job, error) {
 	exec := Executor{Raw: new(ExecutorResponse), Jenkins: j}
-	_, err := j.Requester.GetJSON("/", exec.Raw, nil)
+	_, err := j.Requester.GetJSON(endpoint, exec.Raw, nil)
 
 	if err != nil {
 		return nil, err
